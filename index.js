@@ -9,7 +9,7 @@ import {
 import { fetchJson } from "./utils/fetchJson.js";
 
 const initialize = async () => {
-  const citiesNav = document.querySelector("#cities-nav");
+  const citiesNav = document.querySelector("[data-component='cities-nav']");
 
   const { cities } = await fetchJson("navigation.json");
   const citiesList = citiesNav.querySelector("ul");
