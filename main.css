@@ -12,7 +12,7 @@ main {
   padding: 0 18px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   main {
     padding: 0 45px;
   }
@@ -27,62 +27,64 @@ button {
   cursor: pointer;
 }
 
+ul {
+  margin: 0;
+}
+
 /* custom styles */
 
 :root {
   --animation-timing: 0.3s;
 }
 
-ul {
-  margin: 0;
-}
-
-button {
+.timezone-list-btn {
   color: lightgrey;
   transition: color var(--animation-timing);
   border-left: 1px solid transparent;
   padding: 1em 1em;
 }
 
-@media (min-width: 768px) {
-  button {
+@media (min-width: 1024px) {
+  .timezone-list-btn {
     padding: 1em 0;
     border: none;
     border-bottom: 1px solid transparent;
+    min-width: 4rem;
   }
 }
 
-button.transitioned {
+.timezone-list-btn.transitioned {
   border-color: black;
 }
-button.active,
-button.active:hover {
+.timezone-list-btn.active,
+.timezone-list-btn.active:hover {
   color: black;
   cursor: default;
 }
 
-button:hover {
+.timezone-list-btn:hover {
   color: -apple-system-blue;
 }
 
-nav {
+#cities-nav {
   position: relative;
   display: flex;
   width: 100%;
 }
 
-nav ul {
+#cities-nav ul {
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
   list-style: none;
   padding: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #cities-nav ul {
     flex-direction: row;
+    gap: 4rem;
   }
 }
 
@@ -96,7 +98,7 @@ nav ul {
   z-index: -1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .underline {
     position: absolute;
     top: unset;
@@ -118,7 +120,7 @@ nav ul {
   transition: height var(--animation-timing), top var(--animation-timing);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .underline-highlight {
     position: absolute;
     bottom: 0;

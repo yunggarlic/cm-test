@@ -1,64 +1,30 @@
 import debounce from "./utils/debounce.js";
+import { createTimeZoneButton } from "./lib/timezone-navigation.js";
+import {
+  handleTransitionEnd,
+  handleResize,
+  handleClick,
+} from "./lib/handlers.js";
 
-window.addEventListener("resize", debounce(handleResize));
-window
-  .matchMedia("(min-width: 768px)")
-  .addEventListener("change", handleResize);
-function handleResize() {
-  const activeButton = document.querySelector("nav button.active");
-  const underline = document.querySelector(".underline-highlight");
-  resetLineDimensions(underline);
-  if (activeButton) moveLineToButton(underline, activeButton);
-}
+import { fetchJson } from "./utils/fetchJson.js";
 
-const underline = document.querySelector(".underline-highlight");
-underline.addEventListener("transitionend", handleTransitionEnd);
-function handleTransitionEnd() {
-  const activeButton = document.querySelector("nav button.active");
-  if (activeButton) activeButton.classList.add("transitioned");
-  underline.classList.add("transitioned");
-}
+const initialize = async () => {
+  const citiesNav = document.querySelector("#cities-nav");
 
-const buttons = document.querySelectorAll("nav button");
-buttons.forEach((button) => button.addEventListener("click", handleClick));
-function handleClick(e) {
-  const underline = document.querySelector(".underline-highlight");
-  underline.classList.remove("transitioned");
+  const { cities } = await fetchJson("navigation.json");
+  const citiesList = citiesNav.querySelector("ul");
+  cities.forEach((city) => citiesList.append(createTimeZoneButton(city)));
 
-  const button = e.target;
-  buttons.forEach((btn) => btn.classList.remove("active", "transitioned"));
-  button.classList.add("active");
+  const underline = citiesNav.querySelector(".underline-highlight");
+  underline.addEventListener("transitionend", handleTransitionEnd);
 
-  moveLineToButton(underline, button);
-}
+  const buttons = citiesNav.querySelectorAll(".timezone-list-btn");
+  buttons.forEach((button) => button.addEventListener("click", handleClick));
 
-function resetLineDimensions() {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-  if (isMobile) {
-    underline.style.left = null; // breakpoint resets
-    underline.style.width = "1px";
-  } else {
-    underline.style.top = null; // breakpoint resets
-    underline.style.height = "1px";
-  }
-}
+  window.addEventListener("resize", debounce(handleResize));
+  window
+    .matchMedia("(min-width: 1024px)")
+    .addEventListener("change", handleResize);
+};
 
-function moveLineToButton(underline, button) {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-  const rect = button.getBoundingClientRect();
-  const underlineSize = isMobile ? rect.height : rect.width;
-  const underlinePosition = isMobile
-    ? rect.top - underline.parentElement.getBoundingClientRect().top
-    : rect.left - underline.parentElement.getBoundingClientRect().left;
-
-  if (isMobile) {
-    underline.style.height = `${underlineSize}px`;
-    underline.style.top = `${underlinePosition}px`;
-  } else {
-    underline.style.width = `${underlineSize}px`;
-    underline.style.left = `${underlinePosition}px`;
-  }
-
-  resetLineDimensions(underline);
-}
+initialize();
