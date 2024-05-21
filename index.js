@@ -24,5 +24,5 @@ const initialize = async (citiesNav) => {
     .addEventListener("change", handleResize);
 };
 
-const citiesNav = document.querySelectorAll("[data-component='cities-nav']");
+const citiesNav = document.querySelectorAll("[data-component='cities-nav'] nav");
 citiesNav.forEach(initialize);
