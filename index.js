@@ -5,12 +5,9 @@ import {
   handleResize,
   handleClick,
 } from "./lib/handlers.js";
-
 import { fetchJson } from "./utils/fetchJson.js";
 
-const initialize = async () => {
-  const citiesNav = document.querySelector("[data-component='cities-nav']");
-
+const initialize = async (citiesNav) => {
   const { cities } = await fetchJson("navigation.json");
   const citiesList = citiesNav.querySelector("ul");
   cities.forEach((city) => citiesList.append(createTimeZoneButton(city)));
@@ -27,4 +24,5 @@ const initialize = async () => {
     .addEventListener("change", handleResize);
 };
 
-initialize();
+const citiesNav = document.querySelectorAll("[data-component='cities-nav']");
+citiesNav.forEach(initialize);
