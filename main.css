@@ -73,6 +73,7 @@ ul {
 }
 
 [data-component="cities-nav"] .clock {
+  font-variant-numeric: tabular-nums; 
   display: flex;
   justify-content: center;
   height: 2.5rem;
