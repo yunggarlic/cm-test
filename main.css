@@ -118,14 +118,6 @@ ul {
   transition: top 500ms;
 }
 
-.clock .time-number .current-number.changing {
-  top: -50px;
-}
-
-.time-number .incoming-number.changing {
-  top: 0;
-}
-
 .timezone-list-btn {
   color: lightgrey;
   transition: color var(--animation-timing);

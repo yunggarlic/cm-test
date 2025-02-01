@@ -7,6 +7,7 @@ import {
   activateButton,
   handleCurrentTimeNumberTransitionEnd,
   handleNextTimeNumberTransitionEnd,
+  handleTransitionToggle
 } from "./lib/handlers.js";
 import { fetchJson } from "./utils/fetchJson.js";
 import { setInitialClockTime } from "./lib/fetchTime.js";
@@ -27,6 +28,8 @@ const initializeCitiesNav = async (citiesNav) => {
   activateButton(firstCityItem);
   setInitialClockTime(firstCityItem.dataset.timezone);
 
+  const transitionToggle = document.querySelector("#transition-direction");
+  transitionToggle.addEventListener("click", handleTransitionToggle)
 
   const underline = citiesNav.querySelector(".underline-highlight");
   underline.addEventListener("transitionend", handleTransitionEnd);

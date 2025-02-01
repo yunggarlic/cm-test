@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Critical Mass Test</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-  </head>
-  <body>
-    <main>
-      <div data-component="cities-nav">
-        <nav>
-          <ul></ul>
 
-          <div class="underline"></div>
-          <div class="underline-highlight"></div>
-        </nav>
-        <div class="clock"></div>
-      </div>
-    </main>
-  </body>
-  <script type="module" src="index.js" defer></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Critical Mass Test</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div>
+    <label class="switch"> Toggle transition direction
+      <input type="checkbox" id="transition-direction" />
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <main>
+    <div data-component="cities-nav">
+      <nav>
+        <ul></ul>
+
+        <div class="underline"></div>
+        <div class="underline-highlight"></div>
+      </nav>
+      <div class="clock"></div>
+    </div>
+  </main>
+</body>
+<script type="module" src="index.js" defer></script>
+
 </html>
